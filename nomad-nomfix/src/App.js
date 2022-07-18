@@ -1,47 +1,29 @@
-import logo from './logo.svg';
-// import './App.css';
-import { useState, memo } from 'react'; // ?
-import styles from "./App.module.css"
-// import PropTypes from "prop-types";
+import { useState, useEffect } from 'react'; 
 
-
-function Btn({ text, onClick }) {
-  console.log(text, onClick);
-  return (
-    <button
-      className={styles.app}
-      onClick={onClick}
-      // style={{
-      //   backgroundColor: "grey",
-      //   color: "white",
-      //   padding: "10px 20px", 
-      //   border: 0,
-      //   borderRadius: 10, 
-      // }}
-      >
-      {text}
-    </button>
-  );
-}; 
-
-// type 검사인데 필요하면 찾아보자
-// Btn.propTypes = {
-//   text: propTypes.string,
-//   onClick: propTypes.function,
-// }
-
-// memo, prop의 변화가 없으면 리렌더 안함
-const MemorizedBtn = memo(Btn);
 
 function App() {
-    const [btnName, setBtnName] = useState("Save ");
-    const changeValue = () => setBtnName("Revert");
+  const [counter, setCounter] = useState(0);
+  const onClick = () => setCounter((prev) => (prev + 1));
+  console.log('i run all the time');
+  const runOnlyOnce = () => {
+    console.log("i run only once");
+  };
+  useEffect(runOnlyOnce, []); 
+
+  const [keyword, setKeyword] = useState("");
+  const onChange = (event) => setKeyword(event.target.value);
+  useEffect(() => {
+    if (keyword !== ""){
+      console.log("seach FOR", keyword);
+    }
+  }, [keyword]);
   return (
     <div className="App">
-      {/* 컴포넌트에 쓰는 모든 값은 props이다아 ~, 이벤트가 적용되는게 아님*/}
-      <MemorizedBtn text={btnName} onClick={changeValue} />  
-      {/* {text: "go", x: false, y: 5} 식으로 인자에 들어간다 */}
-      <MemorizedBtn text="continue"/>
+      <input value={keyword} onChange={onChange} type="text" />
+      <h1>{counter}</h1>
+      <button onClick = {onClick}>
+      </button>
+      
     </div>
   );
 }
