@@ -4,13 +4,10 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path={`${process.env.PUBLIC_URL}/`} element={<Home />}></Route>
-        <Route
-          path={`${process.env.PUBLIC_URL}/movie/:id`}
-          element={<Detail />}
-        ></Route>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/movie/:id" element={<Detail />}></Route>
       </Routes>
     </Router>
   );
@@ -18,6 +15,4 @@ function App() {
 
 export default App;
 
-// :id는 usePrams로 url 값을 가져올 때 객체 prop의 이름이다(간단히 변수명)
-// detail.js 에서 useParams를 이용해 :id의 값(url 정보) 를 가져와서
-// fetch로 해당 api에 다시 요청
+// 깃허브 페이지에서 home은 렌더링 되지만,
