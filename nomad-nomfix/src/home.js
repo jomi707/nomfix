@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
 import Movie from "./Movie";
-// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-// Hash Router
-// BrowswerRouter
 
 function Home() {
   const [loading, setLoading] = useState(true);
@@ -30,6 +27,7 @@ function Home() {
           {movies.map((movie) => (
             <Movie
               key={movie.id}
+              id={movie.id}
               coverImg={movie.medium_cover_image}
               title={movie.title}
               summary={movie.summary}

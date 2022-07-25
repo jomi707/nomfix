@@ -7,7 +7,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/movie" element={<Detail />}></Route>
+        <Route path="/movie/:id" element={<Detail />}></Route>
       </Routes>
     </Router>
   );
@@ -15,11 +15,6 @@ function App() {
 
 export default App;
 
-// url의 차이
-// 1. Hash Router: # url
-// 2. BrowswerRouter: nomal,
-
-// Routes: 안에 Route 두 개를 넣으면 동시에 렌더링 ???
-
-// a태그를 추가하여 route할 수도 있지만 페이지 전체가 재실행 됨
-// => Link를 이용
+// :id는 usePrams로 url 값을 가져올 때 객체 prop의 이름이다(간단히 변수명)
+// detail.js 에서 useParams를 이용해 :id의 값(url 정보) 를 가져와서
+// fetch로 해당 api에 다시 요청
